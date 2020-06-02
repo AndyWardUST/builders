@@ -1,0 +1,33 @@
+FROM registry.access.redhat.com/rhel7/rhel
+
+RUN rpm -i https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo | tee /etc/yum.repos.d/microsoft.repo
+
+RUN yum-config-manager --enable rhel-server-rhscl-7-rpms rhel-7-server-extras-rpms rhel-7-server-optional-rpms && yum -y install ca-certificates \
+        curl \
+        libicu \
+	java-11-openjdk-devel \
+        jq \
+	nmap-ncat \
+	powershell \
+	sudo \
+        zip \
+        unzip \
+	rh-python36 \
+	rh-python36-scipy \
+	rh-python36-python-tools \
+	rh-python36-python-six
+
+#RUN ln -s podman docker
+WORKDIR /azp
+COPY ./gitcreate.sh .
+COPY ./start.sh .
+RUN chmod +x gitcreate.sh start.sh
+RUN ./gitcreate.sh
+RUN scl enable rh-python36 bash
+RUN useradd agent
+RUN chown -R agent:agent /azp
+USER agent
+
+CMD ["./start.sh"]
