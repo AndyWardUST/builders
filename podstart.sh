@@ -2,7 +2,7 @@
 set -e
 
 if [ "$1" != "" ]; then
-    echo "Starting node and python agents " $1
+    echo "Starting Agents " $1
 else
     echo "Please supply agent number"
     exit 1
