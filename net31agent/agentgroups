@@ -1,0 +1,2 @@
+agent ALL=(ALL) NOPASSWD: /sbin/groupadd
+agent ALL=(ALL) NOPASSWD: /sbin/usermod

@@ -88,14 +88,6 @@ print_header "3. Configuring Azure Pipelines agent..."
 # remove the administrative token before accepting work
 rm $AZP_TOKEN_FILE
 
-#print_header "3a. Installing python 3.6...to agent fodler"
-#mkdir -p /azp/agent/_work/_tool/python/3.6.9/x64/bin
-#ln -s /opt/rh/rh-python36/root/usr/bin/python3.6 python
-#ln -s /opt/rh/rh-python36/root/usr/bin/pip3.6 pip
-#ln -s /opt/rh/rh-python36/root/usr/bin/pvenv-3.6 pyvenv
-#touch /azp/agent/_work/_tool/python/3.6.9/x64.complete
-
-
 print_header "4. Running Azure Pipelines agent..."
 
 # `exec` the node runtime so it's aware of TERM and INT signals
